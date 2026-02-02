@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Coding Style"
+  short_description: "Swift style, naming, and concurrency conventions"
+  default_prompt: "Use $apple-coding-style to refactor this Swift file to match conventions."

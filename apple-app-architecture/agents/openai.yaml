@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple App Architecture"
+  short_description: "Modular Swift package architecture rules"
+  default_prompt: "Use $apple-app-architecture to structure a new iOS feature module."

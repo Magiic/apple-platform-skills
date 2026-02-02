@@ -11,7 +11,11 @@ project/
 
 When compiling project after updated module, compile scheme module. Create it if the scheme does not exists. Compile the whole project at the end of development to check that it compiles and work.
 
-All files should start with capitalized.
+When creating new Swift files, always name files using UpperCamelCase (PascalCase).
+Every new file name must start with an uppercase letter.
+Examples:
+- Good: UserService.swift, AudioPlayerViewModel.swift
+- Bad: userService.swift, audio_player.swift
 
 ## Module Feature Implementation and Interface
 
@@ -527,7 +531,7 @@ public struct StartModuleView: View {
 All swiftui view and uikit UIView/UIViewController have at least one `#Preview`. Multiple previews is preferable to check all main state of the view.
 
 ## Module Utilities
-Module utilities are modules that are not features but help to solve specifics problems. For example a module with Foundation extension. A module containing Design System when working with Atomic Design, a module wrapper around network client to make HTTP call. These modules should have a name easy to understand what they do, short and upperCamelCase.
+Module utilities are modules that are not features but help to solve specifics problems. For example a module with Foundation extension. A module containing Design System when working with Atomic Design, a module wrapper around network client to make HTTP call. These modules should have a name easy to understand what they do, short and UpperCamelCase (PascalCase).
 They can be imported as dependency in any other modules but especially in feature module.
 
 ## Integration in the app target

@@ -25,7 +25,11 @@ Source: https://www.swift.org/documentation/api-design-guidelines/
 ## Naming rules
 
 ### Filename
-Filename must always start with capitalized.
+When creating new Swift files, always name files using UpperCamelCase (PascalCase).
+Every new file name must start with an uppercase letter.
+Examples:
+- Good: UserService.swift, AudioPlayerViewModel.swift
+- Bad: userService.swift, audio_player.swift
 
 ### Promote clear usage
 - Include the words needed to **avoid ambiguity** (e.g., `remove(at:)` not `remove(_)`).

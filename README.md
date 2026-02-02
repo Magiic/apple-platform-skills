@@ -23,7 +23,7 @@ Then sync with your `Agents.md`
  npx openskills sync
 ```
 
-To use with codex and not use with openskills update AGENTS.md usage with the following:
+To use in cursor with codex extension for example and not use with openskills update AGENTS.md usage with the following:
 
 ````
 <usage>
@@ -46,3 +46,15 @@ Usage notes:
 </usage>
 ```
 
+## How to install in Codex
+
+1. Run the installer:
+
+```bash
+~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Magiic/apple-platform-skills \
+  --path apple-app-architecture \
+  --path apple-coding-style
+```
+
+2. Restart Codex to pick up the new skills.
