@@ -1,4 +1,7 @@
 interface:
   display_name: "Apple Coding Style"
   short_description: "Swift style, naming, and concurrency conventions"
+  icon_small: "./assets/skills-apple.png"
+  icon_large: "./assets/skills-apple.png"
+  brand_color: "#87aae6"
   default_prompt: "Use $apple-coding-style to refactor this Swift file to match conventions."
