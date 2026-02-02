@@ -4,9 +4,14 @@ All local swift packages should be located in folder `/sources`. The folder `/so
 
 project/
 ├── project.xcodeproj
-└── sources/
+└── ModuleInterfaceA
+└── ModuleFeatureA
+└── ModuleInterfaceB
+└── ModuleFeatureB
 
 When compiling project after updated module, compile scheme module. Create it if the scheme does not exists. Compile the whole project at the end of development to check that it compiles and work.
+
+All files should start with capitalized.
 
 ## Module Feature Implementation and Interface
 
@@ -86,7 +91,7 @@ For example, a feature to calculate rectangle area should contains a protocol `R
 
 #### DTO
 This folder can be omitted if there is no dto for the feature.
-Contains all dto files when communicate with backend server. Should conform to `Sendable`, `Decodable`. Use foundation types and custom model themself created with foundation types. Suffixed with `DTO` for example: `UserDTO`. Use `struct` or `enum` if that makes sense.
+Contains all dto files when communicate with backend server. Should conform to `Sendable`, `Decodable`. Use foundation types and custom model themself created with foundation types. Suffixed with `DTO` for example: `UserDTO`. Use `struct` or `enum` if that makes sense. This folder and its files are in Module interface.
 
 ```swift
 public struct UserDTO: Sendable, Decodable {
@@ -128,7 +133,7 @@ public struct User: Sendable {
 ```
 
 #### Folder Mapper
-Contains extension to domain model to create domain from a dto. Use init constructor.
+Contains extension to domain model to create domain from a dto. Use init constructor. This folder is in module interface.
 
 ```swift
 extension User {
@@ -143,6 +148,8 @@ extension User {
     }
 }
 ```
+
+Filename should start with the domain name and prefixed with `+Init`.
 
 #### Repository
 Contains repository protocols. All protocols for repository should conform to `Sendable`. This folder can be omitted if there is no repository for the feature.
@@ -186,6 +193,7 @@ Should named FeatureNameFeature. For example:
 This module contains logical and implementations of the feature. It uses module interface to build its components and services.
 
 Dependencies in `Package.swift` should never contains feature implementation. When need to access to other feature module, use only feature interface.
+Always add in dependencies the feature interface module as exemple below.
 
 Here an example of package for feature interface.
 

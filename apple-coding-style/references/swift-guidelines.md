@@ -24,6 +24,9 @@ Source: https://www.swift.org/documentation/api-design-guidelines/
 
 ## Naming rules
 
+### Filename
+Filename must always start with capitalized.
+
 ### Promote clear usage
 - Include the words needed to **avoid ambiguity** (e.g., `remove(at:)` not `remove(_)`).
 
