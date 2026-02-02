@@ -23,3 +23,26 @@ Then sync with your `Agents.md`
  npx openskills sync
 ```
 
+To use with codex and not use with openskills update AGENTS.md usage with the following:
+
+````
+<usage>
+When users ask you to perform tasks, check if any of the available skills below can help complete the task more effectively.
+
+IMPORTANT:
+- Skills are stored as files in this repository.
+- You MUST read the skill files directly from the filesystem.
+- Do NOT require running any CLI command (no `npx`, no `openskills read`).
+
+How to use skills (portable across tools):
+- Open the skill's `SKILL.md` file from its path.
+- Apply its rules and conventions to the task.
+- If needed, also open any files inside the skill folder (e.g. `references/`).
+
+Usage notes:
+- Only use skills listed in <available_skills> below
+- Do not invoke a skill that is already loaded in your context
+- Each skill invocation is stateless
+</usage>
+```
+
