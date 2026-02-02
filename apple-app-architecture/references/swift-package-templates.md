@@ -9,6 +9,44 @@ project/
 └── ModuleInterfaceB
 └── ModuleFeatureB
 
+## Add New Module to the Xcode Project (PBXProj)
+When you create a new local Swift package, you must register it in `project.xcodeproj/project.pbxproj` so it appears in Xcode.
+
+Add a new `PBXFileReference` for the package folder, then add its UUID to the root group `children`.
+
+Example using a generic module name `ModuleXInterface`:
+
+```
+/* Begin PBXFileReference section */
+    D54DB9022F316A340099D6BD /* ModuleXInterface */ = {
+        isa = PBXFileReference;
+        lastKnownFileType = wrapper;
+        path = ModuleXInterface;
+        sourceTree = "<group>";
+    };
+/* End PBXFileReference section */
+```
+
+Then insert the same UUID in the root group children list near the other modules:
+
+```
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+    D54DB83D2F3108F70099D6BD /* Project */ = {
+        isa = PBXFileSystemSynchronizedRootGroup;
+        children = (
+            D54DB8BA2F314F680099D6BD /* MarketingToolFeature */,
+            D54DB8972F314D7E0099D6BD /* SearchAppInterface */,
+            D54DB89B2F314DE90099D6BD /* SearchAppFeature */,
+            D54DB9022F316A340099D6BD /* ModuleXInterface */,
+            D54DB8982F314D9C0099D6BD /* Frameworks */,
+            D54DB83E2F3108F70099D6BD /* Products */,
+        );
+    };
+/* End PBXFileSystemSynchronizedRootGroup section */
+```
+
+Important: in this project, local packages are registered as folder references only. No XCLocalSwiftPackageReference is added. Dependencies between packages are managed in each package’s Package.swift.
+
 When compiling project after updated module, compile scheme module. Create it if the scheme does not exists. Compile the whole project at the end of development to check that it compiles and work.
 
 When creating new Swift files, always name files using UpperCamelCase (PascalCase).
@@ -535,8 +573,6 @@ Module utilities are modules that are not features but help to solve specifics p
 They can be imported as dependency in any other modules but especially in feature module.
 
 ## Integration in the app target
-
-Once modules ready, import them in project target (or widget, extension) in the section *frameworks, libraries and Embeded content*.
 
 The app target should have the following structure for modularization:
 
