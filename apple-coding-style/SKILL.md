@@ -27,8 +27,8 @@ Use this skill when:
 
 ## Files & structure
 - Use folder not group when possible.
-- Folder name should be capitalized.
-- File name should not be capitalized and follow general guidelines.
+- Folder name use `UpperCamelCase`.
+- File name use `UpperCamelCase` and follow general guidelines.
 - One primary type per file (exceptions: small related types)
 - File name matches main type
 - Keep extensions grouped by purpose:
