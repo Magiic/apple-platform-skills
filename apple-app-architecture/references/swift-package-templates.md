@@ -6,6 +6,8 @@ project/
 ├── project.xcodeproj
 └── sources/
 
+When compiling project after updated module, compile scheme module. Create it if the scheme does not exists. Compile the whole project at the end of development to check that it compiles and work.
+
 ## Module Feature Implementation and Interface
 
 When creating a new feature there is always 2 swift local package to create. One for interface and business model, and the other for implementation of the feature based on the module interface.
@@ -312,8 +314,55 @@ public struct OnboardingModuleConfiguration: ModuleConfiguration {
 }
 ```
 
+Add extension to module configuration to make it easier to access to default value in swiftui previews For debug macroprocessor, use fixtures and mocks. For release default value, use default implementation with warning logs in init and function to prevent developer using his custom implementation. This extension is only accessible in module so it is internal. Here an example:
+
+```swift
+extension OnboardingModuleConfiguration {
+
+    #if DEBUG
+    nonisolated(unsafe) static let `default` = OnboardingModuleConfiguration(
+        configuration: DefaultModConfiguration(
+            analytics: DefaultModConfiguration.Analytics(
+                crashLogger: CrashReportingDefault(),
+                analytics: AnalyticsDefault(),
+                featureFlag: AppFIRFeatureFlag()
+            ),
+            designSystem: DefaultModConfiguration.DS(
+                primaryAppColor: Color.blue,
+                primaryInvertAppColor: Color.white,
+                secondaryAppColor: Color.pink,
+                secondaryInvertAppColor: Color.white
+            ),
+            other: DefaultModConfiguration.Other(windowSize: .zero)
+        ),
+        user: User(name: "Alex"),
+        output: DefaultOnboardingOutput()
+    )
+    #else
+    nonisolated(unsafe) static let `default` = OnboardingModuleConfiguration(
+        configuration: DefaultModConfiguration(
+            analytics: DefaultModConfiguration.Analytics(
+                crashLogger: CrashReportingDefault(),
+                analytics: AnalyticsDefault(),
+                featureFlag: AppFIRFeatureFlag()
+            ),
+            designSystem: DefaultModConfiguration.DS(
+                primaryAppColor: Color.blue,
+                primaryInvertAppColor: Color.white,
+                secondaryAppColor: Color.pink,
+                secondaryInvertAppColor: Color.white
+            ),
+            other: DefaultModConfiguration.Other(windowSize: .zero)
+        ),
+        user: User(name: "Alex"),
+        output: DefaultOnboardingOutput()
+    )
+    #endif
+}
+```
+
 #### Dependencies
-This folder contains all implementation denpendencies. It contains implementation of `Input` and `Output` interfaces if existing.
+This folder contains all implementation denpendencies. It contains implementation of `Input` and `Output` interfaces if existing. It contains also default implementation for protocols needed to build default module configuration in release mode. These implementation should contain warning logs to prevent developer to use his custom implementation.
 
 Example of implementation Input:
 
@@ -376,6 +425,8 @@ struct FixturesMaker {
 }
 ```
 
+Use fixtures only in swiftui previews, in tests and when creating default module configuratio for debug macro processor.
+
 #### Mocks
 Mocks and stubs to work in module with swiftUI previews or for unit tests purposes. We have to test successfull, failures and edge case.
 
@@ -386,7 +437,16 @@ All models and data structure needed to build feature implementation. Should be 
 Xcode documentation with a getting started and other articles if needeed to specify how the module works. Provide screenshots of the pages for platforms.
 
 #### Resources
-Location of assets, images inside xcassets and string localization.
+Location of assets, images inside xcassets and string localization. String localization at creation should has this structure if there is no localization yet:
+
+```
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+  },
+  "version" : "1.0"
+}
+```
 
 #### Views
 All swiftUI, UIKit and viewmodel (MVVM pattern) or presenter for other patterns. Contains also extension to create environment values.:
@@ -394,7 +454,7 @@ All swiftUI, UIKit and viewmodel (MVVM pattern) or presenter for other patterns.
 To make previews working easily, each module configuration has an environment values similar to below:
 
 ```swift
-struct OnboardingModuleConfigurationKey: @MainActor EnvironmentKey {
+struct OnboardingModuleConfigurationKey: EnvironmentKey {
     typealias Value = OnboardingModuleConfiguration
     
     @MainActor
