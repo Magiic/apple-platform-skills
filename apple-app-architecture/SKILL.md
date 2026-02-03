@@ -1,7 +1,7 @@
 ---
 name: apple-app-architecture
 description: >
-  Apply the project's macro architecture rules for Apple platforms (iOS, iPadOS, macOS).
+  Apply the project's macro architecture rules for Apple platforms (iOS, iPadOS, macOS, visionOS, tvOS).
   Use this skill when creating modules, choosing dependencies, structuring features, created files, or adding new architecture patterns.
 ---
 
@@ -25,26 +25,31 @@ Use this skill when:
 ## References
 - See `references/swift-package-templates.md` for canonical examples, patterns and more details.
 
-## Dependency direction (strict)
+## General direction (strict)
 Allowed directions:
-- UI -> Domain
-- Data -> Domain
-- AppComposition -> (UI, Domain, Data, Core*)
-- Feature packages -> Core*
+- Inject dependency from module configuration
+- Use swift environment values as described `references/swift-package-templates.md` to inject configuration accross all children swiftui views.
+- DTO and Domains are located in module interface
+- Protocols are located in module interface
+- Module feature implementation contains implementation and logical of the feature
+- Module feature implementation has tests to validate business logical and rules
+- Module utilities can be imported in other modules
+- Module utilities should focus on one topic. For example, a module for a client network, a module to contains Design System (atomic design)...
 
 Forbidden:
-- Domain importing UI or Data
-- Feature importing another feature directly (use shared Domain/Core abstractions instead)
+- Implementation of logical business in module interface
+- Add module feature implementation dependencies in `Package.Swift`. Only use module interface or module utilities as a dependency for modules interface and implementation.
 - Circular dependencies
 
 ## Public API rules
-- Default to `internal`
+- For all files in module interface, use `public`
+- Default to `internal` for module feature implementation
 - Expose only what other modules need
-- Expose protocols from Domain; implementations live in Data/AppComposition
 
 ## State management (default guidance)
 - SwiftUI: MVVM is default (View + ViewModel)
-- UIKit: Coordinator/Router + MVVM (or VIP if already chosen), but keep the same module boundaries
+- Use `@Observable` if available otherwise use `ObservableObject` conformance for *ViewModel*.
+- UIKit: Coordinator/Router + MVVM but keep the same module boundaries
 
 ## Concurrency (defaults)
 - UI-bound APIs are `@MainActor`
@@ -55,6 +60,7 @@ Forbidden:
 - Domain: fast unit tests (pure business rules)
 - Data: integration tests with mocked network/storage
 - UI: minimal snapshot/UI tests if needed
+- Use Swift Testing framework
 
 ## References
 - See `references/package-templates.md` for Package.swift templates

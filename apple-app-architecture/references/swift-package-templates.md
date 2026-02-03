@@ -1,6 +1,6 @@
 # Architecture Apple project
 
-All local swift packages should be located in folder `/sources`. The folder `/sources` is located at the root of xcode project
+All local swift packages should be located in root of the project at same level than .xcdodeproj.
 
 project/
 ├── project.xcodeproj
@@ -494,7 +494,7 @@ Location of assets, images inside xcassets and string localization. String local
   "sourceLanguage" : "en",
   "strings" : {
   },
-  "version" : "1.0"
+  "version" : "1.1"
 }
 ```
 

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Apple UI"
+  short_description: "SwiftUI and UIKit rules"
+  icon_small: "./assets/skills-apple.png"
+  icon_large: "./assets/skills-apple.png"
+  brand_color: "#87aae6"
+  default_prompt: "Use $apple-ui to build new UI"

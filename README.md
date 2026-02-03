@@ -9,6 +9,10 @@ Specifies macro and micro architecture used in my projects?
 
 Specifies coding style to use across my projects.
 
+## UI
+
+Specifies how to create user interface.
+
 ## How to use
 
 1. Install node and use the command:
@@ -55,6 +59,7 @@ Usage notes:
   --repo Magiic/apple-platform-skills \
   --path apple-app-architecture \
   --path apple-coding-style
+  --path apple-ui
 ```
 
 2. Restart Codex to pick up the new skills.
