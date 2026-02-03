@@ -114,4 +114,4 @@ final class RecordUITests: XCTestCase {
 - AAA pattern (Arrange / Act / Assert) or Given/When/Then consistently
 
 ## References
-- See `references/swift-guidelines.md` for canonical examples, patterns and more details.
+- See `references/robot-pattern.md` for canonical examples, patterns and more details.
