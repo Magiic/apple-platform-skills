@@ -9,23 +9,43 @@ project/
 └── ModuleInterfaceB
 └── ModuleFeatureB
 
-## Add New Module to the Xcode Project (PBXProj)
-When you create a new local Swift package, you must register it in `project.xcodeproj/project.pbxproj` so it appears in Xcode.
+## New Local Swift Package (Reliable CLI Scaffolding)
 
-Add a new `PBXFileReference` for the package folder, then add its UUID to the root group `children`.
+Always scaffold new local packages with the SwiftPM CLI (more reliable than manual folder creation):
+1. `mkdir <PackageName> && cd <PackageName>`
+2. `swift package init --type library --name <PackageName>`
 
-Example using a generic module name `ModuleXInterface`:
+Required skeleton:
+- <PackageName>/Package.swift
+- <PackageName>/.gitignore
+- <PackageName>/Sources/<PackageName>/<PackageName>.swift
+- <PackageName>/Tests/<PackageName>Tests/<PackageName>Tests.swift
 
-```
-/* Begin PBXFileReference section */
-    D54DB9022F316A340099D6BD /* ModuleXInterface */ = {
-        isa = PBXFileReference;
-        lastKnownFileType = wrapper;
-        path = ModuleXInterface;
-        sourceTree = "<group>";
-    };
-/* End PBXFileReference section */
-```
+Package folder, package name, product name, and target name must be identical.
+
+## pbxproj integration (required when the module must be linked to the main app target)
+
+When the package must be linked to an app target, update `project.pbxproj` to match the existing pattern in that project:
+
+1. PBXFileReference:
+   - Add a wrapper file reference for the package folder.
+   - Add the new file reference UUID to the root PBXGroup children list.
+
+2. Swift package references:
+   - If the project already uses XCLocalSwiftPackageReference, add a new local package reference.
+   - If the project uses folder references only, do NOT add XCLocalSwiftPackageReference. Follow the existing style.
+
+3. XCSwiftPackageProductDependency:
+   - Add a new entry with `productName = <PackageName>`.
+
+4. App target linkage:
+   - Add the product dependency UUID to `packageProductDependencies` for `<AppTargetName>`.
+
+5. Frameworks build phase:
+   - Add a PBXBuildFile entry that references the product dependency.
+   - Add that build file UUID to `<AppTargetName>`’s `PBXFrameworksBuildPhase` files list.
+
+
 
 Then insert the same UUID in the root group children list near the other modules:
 
