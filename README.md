@@ -59,11 +59,11 @@ Usage notes:
 1. Run the installer:
 
 ```bash
-~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo Magiic/apple-platform-skills \
   --path apple-app-architecture \
-  --path apple-coding-style
-  --path apple-ui
+  --path apple-coding-style \
+  --path apple-ui \
   --path apple-swift-testing
 ```
 
