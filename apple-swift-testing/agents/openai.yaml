@@ -1,0 +1,7 @@
+interface:
+  display_name: "Apple Swift Testing"
+  short_description: "Swift testing conventions"
+  icon_small: "./assets/skills-apple.png"
+  icon_large: "./assets/skills-apple.png"
+  brand_color: "#87aae6"
+  default_prompt: "Use $apple-swift-testing to create a new test."

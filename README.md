@@ -13,6 +13,10 @@ Specifies coding style to use across my projects.
 
 Specifies how to create user interface.
 
+## Testing
+
+Describes how to make tests.
+
 ## How to use
 
 1. Install node and use the command:
@@ -60,6 +64,7 @@ Usage notes:
   --path apple-app-architecture \
   --path apple-coding-style
   --path apple-ui
+  --path apple-swift-testing
 ```
 
 2. Restart Codex to pick up the new skills.

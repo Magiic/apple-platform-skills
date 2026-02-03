@@ -94,7 +94,7 @@ Before finishing:
 - Do not integrate logic in swiftUI views. Prefer use dedicated objects like ViewModel for presentation logic.
 - Use `@Environment(.horizontalSizeClass)` and `@Environment(.verticalSizeClass)` to handle variants layout.
 - Make views accessible.
-- Provide accessibility identifier for relevant views. Act like all the page need to be testable with XCUITests
+- Provide accessibility identifier for relevant views. Act like all the page need to be testable with UI Tests
 - Provide great accessibility labels for children and combine components.
 - Provide accessibility label and value for components like progress view, slider etc.
 - Handle accessibility `DynamicTypeSize`
