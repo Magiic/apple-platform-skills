@@ -4,10 +4,11 @@ All local swift packages should be located in root of the project at same level 
 
 project/
 ├── project.xcodeproj
-└── ModuleInterfaceA
-└── ModuleFeatureA
-└── ModuleInterfaceB
-└── ModuleFeatureB
+├── Sources/
+    └── ModuleInterfaceA
+    └── ModuleFeatureA
+    └── ModuleInterfaceB
+    └── ModuleFeatureB
 
 ## New Local Swift Package (Reliable CLI Scaffolding)
 
