@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple SwiftUI Previews"
+  short_description: "Isolated SwiftUI previews and deterministic fixtures"
+  default_prompt: "Use $apple-swiftui-previews to preview a feature with isolated loading, content, and error scenarios."

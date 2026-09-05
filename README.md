@@ -3,7 +3,7 @@ Defines Apple platform skills use for my personal and professional projects arou
 
 ## Architecture
 
-Specifies macro and micro architecture used in my projects?
+Defines feature-based Swift Packages with separate Interface and Feature implementation modules, app-level composition, typed communication, SOLID boundaries, and compilation dependency guidance. Internal architecture stays flexible: SwiftUI views default to at most 300 lines, with ViewModels introduced for reusable or independently testable presentation logic.
 
 ## Coding style
 
@@ -15,7 +15,18 @@ Specifies how to create user interface.
 
 ## Testing
 
-Describes how to make tests.
+Defines behavioral Swift Testing and XCTest UI-test conventions, with isolated test doubles and deterministic fixtures.
+
+## Specialized skills
+
+| Skill | Use for |
+| --- | --- |
+| [apple-navigation-deeplinks](apple-navigation-deeplinks/SKILL.md) | Typed routing, Universal Links, startup/authentication readiness, and route tests |
+| [apple-app-clips](apple-app-clips/SKILL.md) | Focused App Clip targets, invocation, shared modules, and reliable handoff to the full app |
+| [apple-swiftui-previews](apple-swiftui-previews/SKILL.md) | Deterministic preview scenarios, isolated dependencies, and canvas troubleshooting |
+| [apple-widgets](apple-widgets/SKILL.md) | WidgetKit extension boundaries, shared data, timelines, app links, and family previews |
+
+All skills support new projects and existing apps independently. Examples are fictional; no reference application is required. Each skill contains its essential rules and links to its own supporting references. Install only the skills useful to your work.
 
 ## How to use
 
@@ -33,7 +44,7 @@ Then sync with your `Agents.md`
 
 To use in cursor with codex extension for example and not use with openskills update AGENTS.md usage with the following:
 
-````
+```text
 <usage>
 When users ask you to perform tasks, check if any of the available skills below can help complete the task more effectively.
 
@@ -62,9 +73,13 @@ Usage notes:
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo Magiic/apple-platform-skills \
   --path apple-app-architecture \
-  --path apple-coding-style \
-  --path apple-ui \
-  --path apple-swift-testing
+    apple-coding-style \
+    apple-ui \
+    apple-swift-testing \
+    apple-navigation-deeplinks \
+    apple-app-clips \
+    apple-swiftui-previews \
+    apple-widgets
 ```
 
 2. Restart Codex to pick up the new skills.

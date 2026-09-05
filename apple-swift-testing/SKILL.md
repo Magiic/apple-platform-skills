@@ -1,8 +1,9 @@
 ---
 name: apple-swift-testing
 description: >
-  Apply Swift to write unit tests and UI tests.
-  Use this skill when writing or refactoring Swift tests code.
+  Write and refactor Swift unit tests, UI tests, configurable dependency doubles, and
+  deterministic fixtures. Use for behavioral testing, mock isolation, and test-support
+  organization in modular Apple apps.
 ---
 
 # Unit tests
@@ -14,7 +15,7 @@ Use this skill when:
 - Writing or editing UI tests
 
 ## General principles
-- User Swift Testing framework for unit tests and continue use XCTest for UI Tests
+- Use Swift Testing for unit tests and XCTest for UI tests
 - Prefer clarity over cleverness
 - Small unit tests with single responsibility
 - Use pattern Robot to make UI Tests. See `references/robot-pattern.md` for more details.
@@ -107,9 +108,19 @@ final class RecordUITests: XCTestCase {
 }
 ```
 
+## Test doubles and fixtures
+
+- Inject doubles through the same contracts/configuration as production dependencies.
+- Configure meaningful success/error outcomes and record only interactions the behavior requires.
+- Use new mutable dependencies per test; avoid shared state, live services, and real preferences/keychain stores.
+- Preserve the contract's actor isolation and cancellation semantics. Use deterministic clocks/data and explicit async control when needed.
+- Keep fixtures separate from dependency behavior, and preview support independent of the test target.
+- Do not add a protocol, ViewModel, or layer solely to mock a simple value or pure function.
+- Read [test-doubles-and-fixtures.md](references/test-doubles-and-fixtures.md) when creating mocks, stubs, spies, fakes, fixtures, or shared test/preview support.
+
 ## Testing conventions
-- When created stubs or mocks, suffixed the name with `Mock` (`ArticleRepositoryMock`).
-- When created mocks, always place them inside a folder named `Mock`.
+- Suffix test dependency doubles with `Mock` (`ArticleRepositoryMock`). Preview-only stubs may use `PreviewStub` in feature-local preview support.
+- Place test doubles in a folder named `Mock` inside the owning test target.
 - Tests mirror module structure
 - AAA pattern (Arrange / Act / Assert) or Given/When/Then consistently
 

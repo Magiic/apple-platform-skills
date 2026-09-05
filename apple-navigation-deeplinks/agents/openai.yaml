@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Navigation and Deep Links"
+  short_description: "Typed routes, Universal Links, and app entry flows"
+  default_prompt: "Use $apple-navigation-deeplinks to add typed deep-link routing to a modular iOS app."

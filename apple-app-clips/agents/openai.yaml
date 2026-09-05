@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple App Clips"
+  short_description: "Modular App Clips, invocation, and app handoff"
+  default_prompt: "Use $apple-app-clips to create a focused App Clip with shared feature modules."

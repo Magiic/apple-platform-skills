@@ -89,14 +89,15 @@ See: `references/concurrency-guidelines.md`.
 
 ## SwiftUI style
 - Keep Views declarative and lightweight.
-- Move orchestration and side effects to ViewModel/state handler.
+- Do not impose MVVM, VIP, or another internal architecture. A simple screen may keep local UI state and forward actions directly.
+- Introduce a ViewModel when presentation logic needs reuse or independent tests; extract focused helpers for pure rules. Keep business workflows out of Views.
 - Keep derived view state computed, not duplicated.
 - Minimize view-level business logic.
 - Prefer small reusable subviews for complex layouts.
 - Line-count limit:
-- A SwiftUI `View` type must not exceed 500 lines.
+- By default, a SwiftUI `View` type must not exceed 300 lines of code, including its helpers and extensions across files (excluding comments, blank lines, and standalone previews).
 - A ViewModel (or equivalent state handler) must not exceed 500 lines.
-- If a type reaches the limit, split it into focused components/files.
+- Split by responsibility before reaching a limit; moving one oversized type into extensions or compressing formatting is not a solution.
 
 See: `references/swiftui-structure.md`.
 
@@ -105,6 +106,14 @@ See: `references/swiftui-structure.md`.
 - Inject dependencies explicitly through initializers or module configuration.
 - Avoid hidden singleton dependencies in business logic.
 - Keep provider/SDK details in infrastructure modules.
+
+## SOLID in everyday code
+- Give each view, ViewModel, validator, mapper, and service one reason to change.
+- Extend behavior through focused injected contracts where substitution is useful; do not create a protocol or pass-through layer for every class.
+- Keep production implementations and test doubles consistent with the same results, errors, cancellation, and isolation contracts.
+- Pass only the data/actions a component needs. Avoid injecting an entire module configuration into a purely visual child.
+- Define shared contracts in the owning `*Interface` module; keep implementation-only collaborators internal to `*Feature`.
+- Never import another feature implementation to reuse its view or ViewModel. Use its interface and app-provided adapter or view builder.
 
 ## Logging and diagnostics
 - Log meaningful events at boundaries (network, persistence, auth, critical actions).
@@ -123,7 +132,7 @@ See: `references/swiftui-structure.md`.
 - Error paths are explicit and typed.
 - Async/concurrency boundaries are safe.
 - Dependencies are injected and testable.
-- UI layer is not carrying business logic.
+- UI layer is not carrying business workflows; views stay within 300 lines and extra layers have a concrete purpose.
 - Localization and bundle access are correct.
 
 ## Definition of done

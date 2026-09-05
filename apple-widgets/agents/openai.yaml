@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Widgets"
+  short_description: "Modular widgets, timelines, data, and app links"
+  default_prompt: "Use $apple-widgets to add a widget with shared data, timelines, and app navigation."

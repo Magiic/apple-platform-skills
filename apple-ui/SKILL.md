@@ -86,12 +86,12 @@ Before finishing:
 
 ## Views
 - Use SwiftUI first if possible.
-- Make SwiftUI views less than 500 lines.
+- By default, keep each SwiftUI View at a maximum of 300 lines of code, including helpers/extensions across files; exclude comments, blank lines, and standalone previews. Extract cohesive child views before the limit.
 - Previews should be at the same file than the swiftUI view
 - Multiple Previews for most of the state of the view if existing.
 - Create child swiftUI views if needed
 - If project contains module Design System, use it to build user interface using its components.
-- Do not integrate logic in swiftUI views. Prefer use dedicated objects like ViewModel for presentation logic.
+- Keep layout and simple local UI state in the View. Introduce a ViewModel when presentation logic needs reuse or independent tests; keep business workflows out of the View. Do not impose MVVM, VIP, or a fixed stack of layers.
 - Use `@Environment(.horizontalSizeClass)` and `@Environment(.verticalSizeClass)` to handle variants layout.
 - Make views accessible.
 - Provide accessibility identifier for relevant views. Act like all the page need to be testable with UI Tests
@@ -104,9 +104,22 @@ Before finishing:
 - When using UIKit, use latest api UITableView and UICollectionView to build it.
 - When dealing with advanced gesture, use UIKit. Ask permission to the user before start using UIKit
 
+## Preview composition
+- Keep previews deterministic and isolated from production services, storage, telemetry, and permission requests.
+- Create fresh mutable preview dependencies and cover meaningful states with named scenarios.
+- Keep preview setup inside the owning module; do not import the app target or another feature implementation to make a preview work.
+- For substantial preview setup or troubleshooting, use `apple-swiftui-previews` when available. Basic UI work remains covered by this skill.
+
 ## View Models
-- Create dedicated objects like ViewModel when they contain logical and relevant to test
-- Always test these implementations
+- Create a ViewModel for reusable or independently testable presentation behavior, not automatically for every screen. Pure rules can use focused helpers instead.
+- Test the meaningful behavior of these implementations through injected dependencies.
+- Give visual child views narrow values, bindings, and action closures instead of an entire ViewModel or module configuration.
+
+## Module boundaries
+- Put UI implementation and its resources in the owning `*Feature` package. Keep routes, startup entries, and cross-module contracts in `*Interface`.
+- Keep `StartModuleView` as the unique public screen entry and select alternate initial screens using the configured starter enum.
+- Embed another feature through an injected input contract or view builder assembled by the app. Never import its implementation into a feature.
+- Follow [swift-user-interface.md](references/swift-user-interface.md) for package ownership and configuration scope.
 
 ## References
 - See `references/localizable.md`, `references/date-formatter.md`, `references/number-formatter.md` for canonical examples, patterns and more details.
