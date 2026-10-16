@@ -71,7 +71,7 @@ This reduces coupling and can reduce incremental rebuild work; it does not guara
 
 ## Workflow
 
-1. For an existing app, inspect manifests, a matching feature pair, app assembly, and public contracts; distinguish conventions from accidental violations. For a new project, establish the app target, supported platforms/toolchain, and repository-root `Sources/` directory, then identify cohesive product features from the requirements.
+1. For an existing app, inspect manifests, a matching feature pair, app assembly, and public contracts; distinguish conventions from accidental violations. For a new project, establish the app target, supported platforms/toolchain, and repository-root `Sources/` directory, then identify cohesive product features from the requirements. When creating or editing the Xcode project itself, use [apple-xcode-project](../apple-xcode-project/SKILL.md).
 2. Identify the feature's responsibility, contract owner, consumers, and allowed dependency edges before adding files. Extend an existing feature for another screen of the same capability.
 3. For a new pair, follow [module-creation-cli.md](references/module-creation-cli.md) and [swift-package-templates.md](references/swift-package-templates.md). Keep supported platforms and toolchain settings aligned with the project.
 4. Implement only the internal responsibilities needed, wire real dependencies at the app root, and supply safe test/preview dependencies.

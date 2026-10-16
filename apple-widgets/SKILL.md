@@ -16,7 +16,7 @@ This skill covers WidgetKit widgets. Live Activities use a distinct ActivityKit 
 
 ## Target and module boundaries
 
-- Create the Widget Extension using the project's Xcode/project-generation mechanism. The extension target owns WidgetKit registration, provider/configuration adapters, and its composition root.
+- Create the Widget Extension using the project's Xcode/project-generation mechanism. For direct `.xcodeproj` edits with Apple's CLI available, follow [apple-xcode-project](../apple-xcode-project/SKILL.md). The extension target owns WidgetKit registration, provider/configuration adapters, and its composition root.
 - Share domain values, repository contracts, and route values through focused Interface modules. Select extension-safe concrete data clients at the extension root.
 - Do not import the app target, its dependency container, full-screen navigation hosts, or another feature's ViewModel into widget implementation code.
 - Reuse small extension-safe UI/technical components when appropriate. Do not link an entire app feature merely to reuse a title formatter or row.

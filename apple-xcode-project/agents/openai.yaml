@@ -1,0 +1,3 @@
+interface:
+  display_name: "Apple Xcode Project"
+  short_description: "Create and edit Xcode projects with Apple's CLI"

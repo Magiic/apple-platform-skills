@@ -21,6 +21,7 @@ Defines behavioral Swift Testing and XCTest UI-test conventions, with isolated t
 
 | Skill | Use for |
 | --- | --- |
+| [apple-xcode-project](apple-xcode-project/SKILL.md) | Xcode 27.2 `xcrun xcodeproj` workflows for JSON project creation and project configuration edits |
 | [apple-navigation-deeplinks](apple-navigation-deeplinks/SKILL.md) | Typed routing, Universal Links, startup/authentication readiness, and route tests |
 | [apple-app-clips](apple-app-clips/SKILL.md) | Focused App Clip targets, invocation, shared modules, and reliable handoff to the full app |
 | [apple-swiftui-previews](apple-swiftui-previews/SKILL.md) | Deterministic preview scenarios, isolated dependencies, and canvas troubleshooting |
@@ -73,6 +74,7 @@ Usage notes:
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
   --repo Magiic/apple-platform-skills \
   --path apple-app-architecture \
+    apple-xcode-project \
     apple-coding-style \
     apple-ui \
     apple-swift-testing \

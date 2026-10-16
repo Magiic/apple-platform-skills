@@ -23,7 +23,7 @@ Then:
 3. Add interface and utility dependencies only where consumed. Never add a sibling Feature implementation to a feature target.
 4. Add feature-owned resources and a feature test target. Tests exercise real behavior when introduced; do not retain an empty sample assertion as validation.
 5. Expose `FooModuleConfiguration` and `StartModuleView`. Add starter entries, inputs, outputs, and builders only as needed; no mandatory ViewModel or layer folders.
-6. Register the local packages/products through the project's existing Xcode/workspace/project-generation mechanism. The app imports concrete features for assembly; callers import interfaces.
+6. Register each new local package whose product the app consumes through the project's existing Xcode/workspace/project-generation mechanism. For a directly maintained `.xcodeproj` with Apple's CLI available, follow [apple-xcode-project](../../apple-xcode-project/SKILL.md): use `xcrun xcodeproj pkg add-local` with `--product` and `--target`, or `pkg link` if the package is already registered. Keep the package's own dependencies in `Package.swift`. The app imports concrete features for assembly; callers import interfaces.
 7. Add focused app factories and output/routing wiring. Avoid modifying generated project files manually if the project uses a generator.
 
 ## Validation

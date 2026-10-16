@@ -38,7 +38,7 @@ Read [shared-state-and-handoff.md](references/shared-state-and-handoff.md) when 
 
 ## Workflow
 
-1. Establish the user task, supported invocation modes, deployment targets, and existing feature boundary. For a new app, create the app/Clip targets and local package pair with separate composition roots.
+1. Establish the user task, supported invocation modes, deployment targets, and existing feature boundary. For a new app, create the app/Clip targets and local package pair with separate composition roots. For `.xcodeproj` target, phase, group, setting, or package edits, follow [apple-xcode-project](../apple-xcode-project/SKILL.md) when its Apple CLI is available.
 2. Review current Apple capability/size constraints for those choices and keep the dependency closure small.
 3. Implement typed invocation handling, focused UI, and explicit dependency configuration.
 4. If continuity is needed, define a versioned shared payload and an idempotent handoff before implementing persistence.
